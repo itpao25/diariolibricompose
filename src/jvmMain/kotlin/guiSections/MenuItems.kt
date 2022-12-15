@@ -18,7 +18,6 @@ import androidx.compose.ui.unit.dp
 fun MenuItems() {
     return PermanentNavigationDrawer(
         modifier = Modifier
-            .clip(RoundedCornerShape(0, 10, 10, 0))
             .background(color = Color.Black)
             .padding(PaddingValues(15.dp, 20.dp, 15.dp, 20.dp)),
         drawerContainerColor = Color.Transparent,
