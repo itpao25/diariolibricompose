@@ -4,14 +4,12 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.gestures.draggable
 import androidx.compose.foundation.gestures.rememberDraggableState
-import androidx.compose.foundation.hoverable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.PermanentNavigationDrawer
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.PointerIcon
 import androidx.compose.ui.input.pointer.pointerHoverIcon
@@ -21,24 +19,41 @@ import java.awt.Cursor
 
 @ExperimentalMaterial3Api
 @Composable
-fun MenuDesktop() {
-    var sizeMenuHorizontal by remember { mutableStateOf(320.dp) }
+fun menuDesktop() {
+
+    val defaultWidthMenu = 300.dp;
+    val maxWidthMenu = 320.dp;
+    var sizeMenuHorizontal by remember { mutableStateOf(defaultWidthMenu) }
+
     return Box(
         modifier = Modifier.width(sizeMenuHorizontal).fillMaxHeight()
     ) {
-        MenuItems()
-
+        PermanentNavigationDrawer(
+            modifier = Modifier
+                .background(color = Color(0xFF424242))
+                .padding(PaddingValues(15.dp, 20.dp, 15.dp, 20.dp)),
+            drawerContainerColor = Color.Transparent,
+            drawerContent = {
+                menuItems().forEach { item ->
+                    item()
+                }
+            }
+        ) {}
         Box(
-            modifier = Modifier.width(5.dp).fillMaxHeight().background(Color.Green)
+            modifier = Modifier
+                .width(3.dp)
+                .fillMaxHeight()
+                .background(Color(0xFF7A7A7A))
+                .align(Alignment.TopEnd)
                 .draggable(
                     orientation = Orientation.Horizontal,
                     state = rememberDraggableState { delta ->
                         val posHorizontal = sizeMenuHorizontal + Dp(delta)
-                        if(posHorizontal <= 350.dp && posHorizontal > 100.dp) {
+                        if(posHorizontal <= maxWidthMenu && posHorizontal > 100.dp) {
                             sizeMenuHorizontal += Dp(delta);
                         }
                     }
-                ).align(Alignment.TopEnd).pointerHoverIcon(PointerIcon(Cursor(Cursor.E_RESIZE_CURSOR)))
+                ).pointerHoverIcon(PointerIcon(Cursor(Cursor.E_RESIZE_CURSOR)))
         ) {}
     }
 }

@@ -12,9 +12,9 @@ import androidx.compose.ui.unit.dp
 
 @ExperimentalMaterial3Api
 @Composable
-fun ContainerWithMenu() {
+fun containerWithMenu() {
     return Row {
-        MenuDesktop()
+        menuDesktop()
         Box(
             modifier = Modifier.padding(PaddingValues(40.dp, 20.dp, 40.dp, 20.dp))
         ) {
