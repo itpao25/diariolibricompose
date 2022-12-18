@@ -28,6 +28,7 @@ fun menuDesktop() {
     return Box(
         modifier = Modifier.width(sizeMenuHorizontal).fillMaxHeight()
     ) {
+
         PermanentNavigationDrawer(
             modifier = Modifier
                 .background(color = Color(0xFF424242))
@@ -39,21 +40,18 @@ fun menuDesktop() {
                 }
             }
         ) {}
+
         Box(
-            modifier = Modifier
-                .width(3.dp)
-                .fillMaxHeight()
-                .background(Color(0xFF7A7A7A))
-                .align(Alignment.TopEnd)
-                .draggable(
-                    orientation = Orientation.Horizontal,
-                    state = rememberDraggableState { delta ->
-                        val posHorizontal = sizeMenuHorizontal + Dp(delta)
-                        if(posHorizontal <= maxWidthMenu && posHorizontal > 100.dp) {
-                            sizeMenuHorizontal += Dp(delta);
-                        }
+            modifier = Modifier.align(Alignment.TopEnd)
+        ) {
+            menuDesktopResizer(onResize =
+                rememberDraggableState { delta ->
+                    val posHorizontal = sizeMenuHorizontal + Dp(delta)
+                    if (posHorizontal <= maxWidthMenu && posHorizontal > 100.dp) {
+                        sizeMenuHorizontal += Dp(delta);
                     }
-                ).pointerHoverIcon(PointerIcon(Cursor(Cursor.E_RESIZE_CURSOR)))
-        ) {}
+                }
+            )
+        }
     }
 }
