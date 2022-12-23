@@ -1,9 +1,7 @@
 package guiSections
 
 import androidx.compose.foundation.gestures.rememberDraggableState
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.*
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.PermanentNavigationDrawer
 import androidx.compose.runtime.*
@@ -28,8 +26,12 @@ fun menuDesktop() {
         PermanentNavigationDrawer(
             modifier = Modifier.fillMaxHeight(),
             drawerContent = {
-                menuItems().forEach { item ->
-                    item()
+                Column(
+                    Modifier.padding(PaddingValues(15.dp, 20.dp, 15.dp, 20.dp)),
+                ) {
+                    menuItems().forEach { item ->
+                        item()
+                    }
                 }
             }
         ) { }
