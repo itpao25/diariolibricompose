@@ -33,7 +33,12 @@ kotlin {
 
         val commonMain by getting {
             dependencies {
-                implementation("org.jetbrains.compose.material3:material3:1.2.0")
+                val materialVersion = "1.2.2"
+                val decomposeVersion = "1.0.0-beta-02"
+
+                implementation("org.jetbrains.compose.material3:material3:$materialVersion")
+                implementation("com.arkivanov.decompose:decompose:$decomposeVersion")
+                implementation("com.arkivanov.decompose:extensions-compose-jetbrains:$decomposeVersion")
             }
         }
     }

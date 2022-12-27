@@ -17,8 +17,8 @@ fun menuDesktop() {
     val defaultWidthMenu = 300.dp;
     val maxWidthMenu = 320.dp;
     val minWidthMenu = 100.dp;
-
     var sizeMenuHorizontal by remember { mutableStateOf(defaultWidthMenu) }
+    val density = LocalDensity.current;
 
     return Box(
         modifier = Modifier.width(sizeMenuHorizontal).fillMaxHeight()
@@ -36,7 +36,6 @@ fun menuDesktop() {
             }
         ) { }
 
-        val density = LocalDensity.current;
         Box(
             modifier = Modifier.align(Alignment.TopEnd)
         ) {
